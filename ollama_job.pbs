@@ -1,0 +1,80 @@
+#!/bin/bash
+#PBS -N noisy_short
+#PBS -q gpu
+#PBS -j oe
+#PBS -l select=1:ncpus=16:ngpus=1
+#PBS -l walltime=24:00:00
+#PBS -m be
+
+cd $PBS_O_WORKDIR
+
+# ── Proxy ────────────────────────────────────────────────────────────────────
+export http_proxy="http://10.150.1.1:3128"
+export https_proxy="http://10.150.1.1:3128"
+export no_proxy="localhost,127.0.0.1,::1"
+export NO_PROXY="$no_proxy"
+export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+export REQUESTS_CA_BUNDLE="$SSL_CERT_FILE"
+
+# ── Python environment ───────────────────────────────────────────────────────
+module purge
+module load utils/python/3.12.2
+
+export PYTHONPATH="$HOME/.local/lib/python3.12/site-packages:$PYTHONPATH"
+PYTHON_BIN=python3
+
+# ── Ollama config ─────────────────────────────────────────────────────────────
+export OLLAMA_MODELS=/lustre/home/rkarlovi/.ollama/models   # persistent model storage
+export OLLAMA_HOST=http://127.0.0.1:11434
+export APPTAINERENV_OLLAMA_HOST=http://127.0.0.1:11434
+OLLAMA_SIF=/lustre/home/rkarlovi/noisy-json-parsing/ollama.sif
+
+mkdir -p /lustre/home/rkarlovi/.ollama/models
+
+# ── Start Ollama server in background ─────────────────────────────────────────
+echo "[$(date)] Starting Ollama server..."
+apptainer exec \
+    --bind /lustre/home/rkarlovi/.ollama:/root/.ollama \
+    --nv \
+    "$OLLAMA_SIF" ollama serve &
+OLLAMA_PID=$!
+
+# ── Wait for Ollama to be ready ───────────────────────────────────────────────
+echo "[$(date)] Waiting for Ollama to be ready..."
+sleep 10
+echo "[$(date)] Ollama should be ready."
+
+# ── Optional: pull model if not already cached ───────────────────────────────
+# Uncomment and set the model you need:
+# apptainer exec --bind /lustre/home/rkarlovi/.ollama:/root/.ollama "$OLLAMA_SIF" \
+#     ollama pull mistral:7b
+
+# ── Run your Python script ───────────────────────────────────────────────────
+echo "[$(date)] Running Python script..."
+REQUIREMENTS_FILE="$PBS_O_WORKDIR/requirements.txt"
+if [[ ! -f "$REQUIREMENTS_FILE" ]]; then
+    echo "[$(date)] ERROR: Requirements file not found: $REQUIREMENTS_FILE"
+    kill "$OLLAMA_PID" 2>/dev/null
+    wait "$OLLAMA_PID" 2>/dev/null
+    exit 1
+fi
+
+if ! "$PYTHON_BIN" -c "import codecarbon, ollama, pandas, sklearn" >/dev/null 2>&1; then
+    echo "[$(date)] ERROR: Evaluator dependencies are not available for $PYTHON_BIN."
+    echo "[$(date)] Install them before submitting with: $PYTHON_BIN -m pip install --user -r $REQUIREMENTS_FILE"
+    kill "$OLLAMA_PID" 2>/dev/null
+    wait "$OLLAMA_PID" 2>/dev/null
+    exit 1
+fi
+
+"$PYTHON_BIN" generate_and_eval.py
+
+EXIT_CODE=$?
+echo "[$(date)] Python script finished with exit code $EXIT_CODE"
+
+# ── Shutdown Ollama cleanly ──────────────────────────────────────────────────
+echo "[$(date)] Stopping Ollama..."
+kill "$OLLAMA_PID"
+wait "$OLLAMA_PID" 2>/dev/null
+
+exit $EXIT_CODE

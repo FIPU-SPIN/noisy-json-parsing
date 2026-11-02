@@ -1,0 +1,55 @@
+#!/bin/bash
+#PBS -N noisy_peft_ia3
+#PBS -q gpu
+#PBS -j oe
+#PBS -l select=1:ncpus=16:ngpus=1
+#PBS -l walltime=168:00:00
+#PBS -m be
+
+set -o pipefail
+
+cd "${PBS_O_WORKDIR:-$(pwd)}"
+
+# ── Network and certificates ─────────────────────────────────────────────────
+export http_proxy="http://10.150.1.1:3128"
+export https_proxy="http://10.150.1.1:3128"
+export no_proxy="localhost,127.0.0.1,::1"
+export NO_PROXY="$no_proxy"
+export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+export REQUESTS_CA_BUNDLE="$SSL_CERT_FILE"
+
+# ── Python and GPU runtime ───────────────────────────────────────────────────
+module purge
+module load utils/python/3.12.2
+
+export PYTHON_BIN=python3
+export PYTHONPATH="$HOME/.local/lib/python3.12/site-packages:${PYTHONPATH:-}"
+export PYTORCH_ALLOC_CONF=expandable_segments:True
+export TOKENIZERS_PARALLELISM=false
+export OMP_NUM_THREADS="${OMP_NUM_THREADS:-16}"
+
+# ── Persistent model cache ───────────────────────────────────────────────────
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-$HF_HOME/hub}"
+export HF_HUB_DISABLE_TELEMETRY=1
+mkdir -p "$HF_HOME" "$HF_HUB_CACHE"
+
+# ── Experiment configuration ────────────────────────────────────────────────
+# Define model/adapter choices and the three split CSV paths in train_peft.py.
+echo "[$(date)] Starting configured PEFT experiment matrix."
+
+if [[ -z "${HF_TOKEN:-}" ]]; then
+    echo "[$(date)] HF_TOKEN is not set; using existing Hugging Face cached authentication if available."
+fi
+
+if ! "$PYTHON_BIN" -c "import accelerate, bitsandbytes, codecarbon, datasets, peft, pandas, sklearn, torch, transformers, trl; assert torch.cuda.is_available(), 'CUDA is not available'; print('CUDA device:', torch.cuda.get_device_name(0))"; then
+    echo "[$(date)] ERROR: PEFT dependencies or CUDA are unavailable in the job environment."
+    exit 1
+fi
+
+"$PYTHON_BIN" train_peft2.py \
+    "$@"
+
+EXIT_CODE=$?
+echo "[$(date)] train_peft2.py finished with exit code $EXIT_CODE"
+exit "$EXIT_CODE"

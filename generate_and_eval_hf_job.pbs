@@ -1,0 +1,92 @@
+#!/bin/bash
+#PBS -N noisy_hf_eval
+#PBS -q gpu
+#PBS -j oe
+#PBS -l select=1:ncpus=16:ngpus=1
+#PBS -l walltime=24:00:00
+#PBS -m be
+
+set -euo pipefail
+
+cd "${PBS_O_WORKDIR:?Submit this job with qsub from the project directory}"
+
+# Network and certificates for Hugging Face downloads and CodeCarbon.
+export http_proxy="http://10.150.1.1:3128"
+export https_proxy="http://10.150.1.1:3128"
+export no_proxy="localhost,127.0.0.1,::1"
+export NO_PROXY="$no_proxy"
+export SSL_CERT_FILE=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+export REQUESTS_CA_BUNDLE="$SSL_CERT_FILE"
+
+# Python and CUDA runtime.
+module purge
+module load utils/python/3.12.2
+
+PYTHON_BIN=python3
+export PYTHONPATH="$HOME/.local/lib/python3.12/site-packages:${PYTHONPATH:-}"
+export PYTORCH_ALLOC_CONF=expandable_segments:True
+export TOKENIZERS_PARALLELISM=false
+export OMP_NUM_THREADS="${OMP_NUM_THREADS:-16}"
+
+# Reuse model downloads between baseline, PEFT, and future jobs.
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-$HF_HOME/hub}"
+export HF_HUB_DISABLE_TELEMETRY=1
+mkdir -p "$HF_HOME" "$HF_HUB_CACHE"
+
+DATASET="${HF_EVAL_DATASET:-$PBS_O_WORKDIR/test_dataset_v3.csv}"
+RESPONSES_DIR="${HF_EVAL_RESPONSES_DIR:-$PBS_O_WORKDIR/responses/huggingface}"
+RESULTS_DIR="${HF_EVAL_RESULTS_DIR:-$PBS_O_WORKDIR/results/huggingface}"
+mkdir -p "$RESPONSES_DIR" "$RESULTS_DIR"
+
+if [[ ! -f "$DATASET" ]]; then
+    echo "[$(date)] ERROR: Dataset not found: $DATASET"
+    exit 1
+fi
+
+if ! "$PYTHON_BIN" -c "import accelerate, bitsandbytes, codecarbon, pandas, sklearn, torch, transformers; assert torch.cuda.is_available(), 'CUDA is not available'; print('CUDA device:', torch.cuda.get_device_name(0))"; then
+    echo "[$(date)] ERROR: Hugging Face evaluator dependencies or CUDA are unavailable."
+    exit 1
+fi
+
+if [[ -z "${HF_TOKEN:-}" ]]; then
+    echo "[$(date)] HF_TOKEN is not set; using cached Hugging Face authentication if available."
+fi
+
+MODEL_ARGS=()
+if [[ -n "${HF_EVAL_MODELS:-}" ]]; then
+    IFS=',' read -r -a MODELS <<< "$HF_EVAL_MODELS"
+    MODEL_ARGS=(--models "${MODELS[@]}")
+fi
+
+PROMPT_ARGS=()
+if [[ -n "${HF_EVAL_PROMPTS:-}" ]]; then
+    IFS=',' read -r -a PROMPTS <<< "$HF_EVAL_PROMPTS"
+    PROMPT_ARGS=(--prompt-variants "${PROMPTS[@]}")
+fi
+
+EVAL_ARGS=(
+    --dataset "$DATASET"
+    --responses-dir "$RESPONSES_DIR"
+    --results-dir "$RESULTS_DIR"
+)
+
+if [[ -n "${HF_EVAL_LIMIT:-}" ]]; then
+    EVAL_ARGS+=(--limit "$HF_EVAL_LIMIT")
+fi
+if [[ -n "${HF_EVAL_MAX_NEW_TOKENS:-}" ]]; then
+    EVAL_ARGS+=(--max-new-tokens "$HF_EVAL_MAX_NEW_TOKENS")
+fi
+if [[ "${HF_EVAL_LOCAL_ONLY:-0}" == "1" ]]; then
+    EVAL_ARGS+=(--local-files-only)
+fi
+
+# Extra command-line options can also be passed after the PBS script name.
+EVAL_ARGS+=("${MODEL_ARGS[@]}" "${PROMPT_ARGS[@]}" "$@")
+
+echo "[$(date)] Starting Hugging Face evaluation."
+echo "[$(date)] Dataset: $DATASET"
+echo "[$(date)] Responses: $RESPONSES_DIR"
+echo "[$(date)] Metrics: $RESULTS_DIR"
+"$PYTHON_BIN" generate_and_eval_hf.py "${EVAL_ARGS[@]}"
+echo "[$(date)] Hugging Face evaluation finished successfully."
