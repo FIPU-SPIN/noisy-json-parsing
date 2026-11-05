@@ -1,0 +1,11 @@
+\begin{tabular}{llllrrrrrrrrrrrrrrrrrrrrrrlrr}
+\toprule
+model\_name & adapter\_type & prompt\_variant & tier & examples & generation\_errors & schema\_adherence\_pct & emr\_pct & action\_precision & action\_recall & action\_f1 & product\_precision & product\_recall & product\_f1 & quantity\_precision & quantity\_recall & quantity\_f1 & tier3\_correction\_accuracy\_pct & mean\_input\_tokens & mean\_output\_tokens & mean\_latency\_seconds & aggregate\_tps & mean\_tps & energy\_kwh & emissions\_kg & average\_gpu\_power\_w & energy\_tracker\_error & peak\_training\_vram\_gb & peak\_inference\_vram\_gb \\
+\midrule
+meta-llama/Llama-3.2-3B-Instruct & ia3 & minimal & tier\_0 & 1200 & 0 & 98.5000 & 88.0000 & 0.8942 & 0.8942 & 0.8942 & 0.9733 & 0.9733 & 0.9733 & 0.9683 & 0.9683 & 0.9683 & -- & 66.7517 & 15.3917 & 0.8990 & 17.1215 & 17.1598 & 0.0616 & 0.0126 & 0.0000 & -- & 3.8640 & 2.9194 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & minimal & tier\_1 & 1200 & 0 & 93.9167 & 61.9167 & 0.7808 & 0.7808 & 0.7808 & 0.7500 & 0.7500 & 0.7500 & 0.8417 & 0.8417 & 0.8417 & -- & 66.6433 & 15.6317 & 0.9069 & 17.2369 & 17.2773 & 0.0862 & 0.0177 & 71.3091 & -- & 3.8640 & 2.9194 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & minimal & tier\_2 & 1200 & 0 & 83.8333 & 59.1667 & 0.6108 & 0.6108 & 0.6108 & 0.8200 & 0.8200 & 0.8200 & 0.8125 & 0.8125 & 0.8125 & -- & 72.6208 & 15.8158 & 0.8962 & 17.6480 & 17.6563 & 0.0859 & 0.0176 & 71.3832 & -- & 3.8640 & 2.9194 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & minimal & tier\_3 & 1200 & 0 & 95.6667 & 62.7500 & 0.6467 & 0.6467 & 0.6467 & 0.9450 & 0.9450 & 0.9450 & 0.9392 & 0.9392 & 0.9392 & 62.7500 & 76.4942 & 15.3958 & 0.8775 & 17.5443 & 17.5686 & 0.0862 & 0.0177 & 71.1666 & -- & 3.8640 & 2.9194 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & minimal & overall & 4800 & 0 & 92.9792 & 67.9583 & 0.7331 & 0.7331 & 0.7331 & 0.8721 & 0.8721 & 0.8721 & 0.8904 & 0.8904 & 0.8904 & -- & 70.6275 & 15.5587 & 0.8949 & 17.3862 & 17.4155 & 0.3199 & 0.0656 & 53.9613 & -- & 3.8640 & 2.9194 \\
+\bottomrule
+\end{tabular}
