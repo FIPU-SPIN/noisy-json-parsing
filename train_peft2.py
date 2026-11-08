@@ -30,7 +30,7 @@ from typing import Any
 BASE_DIR = Path(__file__).resolve().parent
 TRAIN_DATASET_PATH = BASE_DIR / "train_dataset_v3.csv"
 VALIDATION_DATASET_PATH = BASE_DIR / "val_dataset_v3.csv"
-TEST_DATASET_PATH = BASE_DIR / "test_dataset_v3.csv"
+TEST_DATASET_PATH = BASE_DIR / "test_heldout_v2.csv"
 DEFAULT_RESULTS_DIR = BASE_DIR / "results"
 # Hugging Face baseline counterparts are configured in generate_and_eval_hf.py.
 MODEL_NAMES = (

@@ -29,7 +29,7 @@ from typing import Any
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DEFAULT_DATASET = BASE_DIR / "test_dataset_v3.csv"
+DEFAULT_DATASET = BASE_DIR / "test_heldout_v2.csv"
 DEFAULT_RESPONSES_DIR = BASE_DIR / "responses" / "ollama"
 DEFAULT_RESULTS_DIR = BASE_DIR / "results" / "ollama"
 
