@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-13T19:20:06.981404+00:00",
+  "model_name": "meta-llama/Llama-3.2-3B-Instruct",
+  "adapter_type": "lora",
+  "prompt_variant": "minimal",
+  "adapter_path": "/lustre/home/rkarlovi/noisy-json-parsing/adapters/meta-llama_Llama-3.2-3B-Instruct__lora__minimal/adapter",
+  "train_examples": 38400,
+  "validation_examples": 4800,
+  "training_seconds": 41579.95758795738,
+  "peak_training_vram_gb": 3.911463737487793,
+  "train_metrics": {
+    "train_runtime": 41579.6938,
+    "train_samples_per_second": 2.771,
+    "train_steps_per_second": 0.173,
+    "total_flos": 1.699949973041787e+17,
+    "train_loss": 0.24350434886084663,
+    "epoch": 3.0
+  },
+  "effective_batch_size": 16,
+  "compute_dtype": "torch.bfloat16"
+}

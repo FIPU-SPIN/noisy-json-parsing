@@ -1,0 +1,90 @@
+[
+  {
+    "model": "llama3.2:3b",
+    "tier": "tier_0",
+    "started_at": "2026-11-07T22:45:58.352094+00:00",
+    "finished_at": "2026-11-07T22:49:29.031685+00:00",
+    "duration_seconds": 210.67959229648113,
+    "completed_requests": 1200,
+    "kwh": 0.02153586594513181,
+    "gpu_power_w": 139.81241293984175,
+    "emissions_kg": 0.004414034155846106
+  },
+  {
+    "model": "llama3.2:3b",
+    "tier": "tier_1",
+    "started_at": "2026-11-07T22:49:29.211736+00:00",
+    "finished_at": "2026-11-07T22:53:50.748767+00:00",
+    "duration_seconds": 261.53703681752086,
+    "completed_requests": 1200,
+    "kwh": 0.025697862477644766,
+    "gpu_power_w": 126.85806218654447,
+    "emissions_kg": 0.005267085289143027
+  },
+  {
+    "model": "llama3.2:3b",
+    "tier": "tier_2",
+    "started_at": "2026-11-07T22:53:50.880886+00:00",
+    "finished_at": "2026-11-07T22:58:42.091279+00:00",
+    "duration_seconds": 291.21039685979486,
+    "completed_requests": 1200,
+    "kwh": 0.02812912752048172,
+    "gpu_power_w": 121.79457209411058,
+    "emissions_kg": 0.005765402234852974
+  },
+  {
+    "model": "llama3.2:3b",
+    "tier": "tier_3",
+    "started_at": "2026-11-07T22:58:42.156142+00:00",
+    "finished_at": "2026-11-07T23:03:51.809827+00:00",
+    "duration_seconds": 309.65369264408946,
+    "completed_requests": 1200,
+    "kwh": 0.029599942642664877,
+    "gpu_power_w": 118.7997129379859,
+    "emissions_kg": 0.006066863443925879
+  },
+  {
+    "model": "llama3.1:8b",
+    "tier": "tier_0",
+    "started_at": "2026-11-07T23:03:51.878047+00:00",
+    "finished_at": "2026-11-07T23:10:30.703785+00:00",
+    "duration_seconds": 398.8257476761937,
+    "completed_requests": 1200,
+    "kwh": 0.04201510233018145,
+    "gpu_power_w": 153.98430672193197,
+    "emissions_kg": 0.00861149940379865
+  },
+  {
+    "model": "llama3.1:8b",
+    "tier": "tier_1",
+    "started_at": "2026-11-07T23:10:30.823211+00:00",
+    "finished_at": "2026-11-07T23:17:40.890816+00:00",
+    "duration_seconds": 430.06761034205556,
+    "completed_requests": 1200,
+    "kwh": 0.04463116411644172,
+    "gpu_power_w": 149.28399301286854,
+    "emissions_kg": 0.009147692659634128
+  },
+  {
+    "model": "llama3.1:8b",
+    "tier": "tier_2",
+    "started_at": "2026-11-07T23:17:40.956704+00:00",
+    "finished_at": "2026-11-07T23:25:23.562470+00:00",
+    "duration_seconds": 462.6057704463601,
+    "completed_requests": 1200,
+    "kwh": 0.04718363584994981,
+    "gpu_power_w": 143.9988755467739,
+    "emissions_kg": 0.009670852371077414
+  },
+  {
+    "model": "llama3.1:8b",
+    "tier": "tier_3",
+    "started_at": "2026-11-07T23:25:23.627164+00:00",
+    "finished_at": "2026-11-07T23:33:33.409478+00:00",
+    "duration_seconds": 489.7823197171092,
+    "completed_requests": 1200,
+    "kwh": 0.04926368344079547,
+    "gpu_power_w": 139.75200790667387,
+    "emissions_kg": 0.010097183085392323
+  }
+]

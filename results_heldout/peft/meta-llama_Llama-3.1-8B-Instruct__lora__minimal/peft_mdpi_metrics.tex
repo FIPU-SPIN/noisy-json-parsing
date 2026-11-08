@@ -1,0 +1,11 @@
+\begin{tabular}{llllrrrrrrrrrrrrrrrrrrrrrrlrr}
+\toprule
+model\_name & adapter\_type & prompt\_variant & tier & examples & generation\_errors & schema\_adherence\_pct & emr\_pct & action\_precision & action\_recall & action\_f1 & product\_precision & product\_recall & product\_f1 & quantity\_precision & quantity\_recall & quantity\_f1 & tier3\_correction\_accuracy\_pct & mean\_input\_tokens & mean\_output\_tokens & mean\_latency\_seconds & aggregate\_tps & mean\_tps & energy\_kwh & emissions\_kg & average\_gpu\_power\_w & energy\_tracker\_error & peak\_training\_vram\_gb & peak\_inference\_vram\_gb \\
+\midrule
+meta-llama/Llama-3.1-8B-Instruct & lora & minimal & tier\_0 & 1200 & 0 & 100.0000 & 95.4167 & 0.9750 & 0.9750 & 0.9750 & 0.9783 & 0.9783 & 0.9783 & 1.0000 & 1.0000 & 1.0000 & -- & 68.6717 & 15.5967 & 1.2679 & 12.3007 & 12.3020 & 0.1318 & 0.0270 & 82.2064 & -- & 11.7886 & 11.8835 \\
+meta-llama/Llama-3.1-8B-Instruct & lora & minimal & tier\_1 & 1200 & 0 & 100.0000 & 74.8333 & 0.9500 & 0.9500 & 0.9500 & 0.8042 & 0.8042 & 0.8042 & 0.9692 & 0.9692 & 0.9692 & -- & 69.2083 & 15.6033 & 1.2672 & 12.3136 & 12.3149 & 0.1576 & 0.0323 & 76.0810 & -- & 11.7886 & 11.8835 \\
+meta-llama/Llama-3.1-8B-Instruct & lora & minimal & tier\_2 & 1200 & 0 & 100.0000 & 93.7500 & 0.9583 & 0.9583 & 0.9583 & 0.9775 & 0.9775 & 0.9775 & 1.0000 & 1.0000 & 1.0000 & -- & 75.8317 & 15.5975 & 1.2641 & 12.3389 & 12.3398 & 0.1345 & 0.0276 & 79.7272 & -- & 11.7886 & 11.8835 \\
+meta-llama/Llama-3.1-8B-Instruct & lora & minimal & tier\_3 & 1200 & 0 & 100.0000 & 92.0833 & 0.9675 & 0.9675 & 0.9675 & 0.9733 & 0.9733 & 0.9733 & 0.9783 & 0.9783 & 0.9783 & 92.0833 & 74.4358 & 15.5967 & 1.2579 & 12.3986 & 12.3994 & 0.1362 & 0.0279 & 79.7205 & -- & 11.7886 & 11.8835 \\
+meta-llama/Llama-3.1-8B-Instruct & lora & minimal & overall & 4800 & 0 & 100.0000 & 89.0208 & 0.9627 & 0.9627 & 0.9627 & 0.9333 & 0.9333 & 0.9333 & 0.9869 & 0.9869 & 0.9869 & -- & 72.0369 & 15.5985 & 1.2643 & 12.3378 & 12.3390 & 0.5600 & 0.1148 & 79.2458 & -- & 11.7886 & 11.8835 \\
+\bottomrule
+\end{tabular}

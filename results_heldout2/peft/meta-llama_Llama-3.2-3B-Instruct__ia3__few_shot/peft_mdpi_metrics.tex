@@ -1,0 +1,11 @@
+\begin{tabular}{llllrrrrrrrrrrrrrrrrrrrrrrlrr}
+\toprule
+model\_name & adapter\_type & prompt\_variant & tier & examples & generation\_errors & schema\_adherence\_pct & emr\_pct & action\_precision & action\_recall & action\_f1 & product\_precision & product\_recall & product\_f1 & quantity\_precision & quantity\_recall & quantity\_f1 & tier3\_correction\_accuracy\_pct & mean\_input\_tokens & mean\_output\_tokens & mean\_latency\_seconds & aggregate\_tps & mean\_tps & energy\_kwh & emissions\_kg & average\_gpu\_power\_w & energy\_tracker\_error & peak\_training\_vram\_gb & peak\_inference\_vram\_gb \\
+\midrule
+meta-llama/Llama-3.2-3B-Instruct & ia3 & few\_shot & tier\_0 & 1200 & 0 & 100.0000 & 82.8333 & 0.8433 & 0.8433 & 0.8433 & 0.9783 & 0.9783 & 0.9783 & 1.0000 & 1.0000 & 1.0000 & -- & 217.4325 & 15.5533 & 0.8962 & 17.3557 & 17.3614 & 0.0828 & 0.0170 & 70.2702 & -- & 5.7719 & 5.8983 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & few\_shot & tier\_1 & 1200 & 0 & 99.4167 & 61.7500 & 0.8017 & 0.8017 & 0.8017 & 0.7942 & 0.7942 & 0.7942 & 0.9433 & 0.9433 & 0.9433 & -- & 217.2000 & 15.6783 & 0.9035 & 17.3532 & 17.3582 & 0.0852 & 0.0175 & 69.9339 & -- & 5.7719 & 5.8983 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & few\_shot & tier\_2 & 1200 & 0 & 99.9167 & 79.0000 & 0.8092 & 0.8092 & 0.8092 & 0.9775 & 0.9775 & 0.9775 & 0.9975 & 0.9975 & 0.9975 & -- & 224.8275 & 15.5575 & 0.8941 & 17.4009 & 17.4120 & 0.0862 & 0.0177 & 69.7516 & -- & 5.7719 & 5.8983 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & few\_shot & tier\_3 & 1200 & 0 & 99.8333 & 76.6667 & 0.7858 & 0.7858 & 0.7858 & 0.9900 & 0.9900 & 0.9900 & 0.9833 & 0.9833 & 0.9833 & 76.6667 & 223.4933 & 15.5592 & 0.9148 & 17.0090 & 17.0177 & 0.0901 & 0.0185 & 69.0814 & -- & 5.7719 & 5.8983 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & few\_shot & overall & 4800 & 0 & 99.7917 & 75.0625 & 0.8100 & 0.8100 & 0.8100 & 0.9350 & 0.9350 & 0.9350 & 0.9810 & 0.9810 & 0.9810 & -- & 220.7383 & 15.5871 & 0.9021 & 17.2784 & 17.2873 & 0.3443 & 0.0706 & 69.7453 & -- & 5.7719 & 5.8983 \\
+\bottomrule
+\end{tabular}

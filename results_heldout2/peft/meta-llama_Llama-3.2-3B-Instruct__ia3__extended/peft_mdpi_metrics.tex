@@ -1,0 +1,11 @@
+\begin{tabular}{llllrrrrrrrrrrrrrrrrrrrrrrlrr}
+\toprule
+model\_name & adapter\_type & prompt\_variant & tier & examples & generation\_errors & schema\_adherence\_pct & emr\_pct & action\_precision & action\_recall & action\_f1 & product\_precision & product\_recall & product\_f1 & quantity\_precision & quantity\_recall & quantity\_f1 & tier3\_correction\_accuracy\_pct & mean\_input\_tokens & mean\_output\_tokens & mean\_latency\_seconds & aggregate\_tps & mean\_tps & energy\_kwh & emissions\_kg & average\_gpu\_power\_w & energy\_tracker\_error & peak\_training\_vram\_gb & peak\_inference\_vram\_gb \\
+\midrule
+meta-llama/Llama-3.2-3B-Instruct & ia3 & extended & tier\_0 & 1200 & 0 & 100.0000 & 87.4167 & 0.8900 & 0.8900 & 0.8900 & 0.9825 & 0.9825 & 0.9825 & 0.9983 & 0.9983 & 0.9983 & -- & 128.4325 & 15.8242 & 0.9019 & 17.5445 & 17.5502 & 0.0829 & 0.0170 & 69.3084 & -- & 4.3032 & 4.3996 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & extended & tier\_1 & 1200 & 0 & 97.0000 & 60.7500 & 0.7792 & 0.7792 & 0.7792 & 0.7650 & 0.7650 & 0.7650 & 0.9325 & 0.9325 & 0.9325 & -- & 128.2000 & 15.7392 & 0.9042 & 17.4062 & 17.4129 & 0.0850 & 0.0174 & 68.8986 & -- & 4.3032 & 4.3996 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & extended & tier\_2 & 1200 & 0 & 100.0000 & 81.0833 & 0.8217 & 0.8217 & 0.8217 & 0.9892 & 0.9892 & 0.9892 & 0.9975 & 0.9975 & 0.9975 & -- & 135.8275 & 15.6825 & 0.9003 & 17.4187 & 17.4265 & 0.0867 & 0.0178 & 68.7182 & -- & 4.3032 & 4.3996 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & extended & tier\_3 & 1200 & 0 & 99.9167 & 77.1667 & 0.7950 & 0.7950 & 0.7950 & 0.9817 & 0.9817 & 0.9817 & 0.9892 & 0.9892 & 0.9892 & 77.1667 & 134.4933 & 15.7475 & 0.8990 & 17.5176 & 17.5220 & 0.0887 & 0.0182 & 68.4810 & -- & 4.3032 & 4.3996 \\
+meta-llama/Llama-3.2-3B-Instruct & ia3 & extended & overall & 4800 & 0 & 99.2292 & 76.6042 & 0.8215 & 0.8215 & 0.8215 & 0.9296 & 0.9296 & 0.9296 & 0.9794 & 0.9794 & 0.9794 & -- & 131.7383 & 15.7483 & 0.9014 & 17.4717 & 17.4779 & 0.3433 & 0.0704 & 68.8438 & -- & 4.3032 & 4.3996 \\
+\bottomrule
+\end{tabular}

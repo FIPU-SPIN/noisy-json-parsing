@@ -1,0 +1,11 @@
+\begin{tabular}{llllrrrrrrrrrrrrrrrrrrrrrrlrr}
+\toprule
+model\_name & adapter\_type & prompt\_variant & tier & examples & generation\_errors & schema\_adherence\_pct & emr\_pct & action\_precision & action\_recall & action\_f1 & product\_precision & product\_recall & product\_f1 & quantity\_precision & quantity\_recall & quantity\_f1 & tier3\_correction\_accuracy\_pct & mean\_input\_tokens & mean\_output\_tokens & mean\_latency\_seconds & aggregate\_tps & mean\_tps & energy\_kwh & emissions\_kg & average\_gpu\_power\_w & energy\_tracker\_error & peak\_training\_vram\_gb & peak\_inference\_vram\_gb \\
+\midrule
+meta-llama/Llama-3.1-8B-Instruct & ia3 & few\_shot & tier\_0 & 1200 & 0 & 99.7500 & 96.1667 & 0.9650 & 0.9650 & 0.9650 & 0.9942 & 0.9942 & 0.9942 & 0.9967 & 0.9967 & 0.9967 & -- & 217.6717 & 15.6558 & 1.0839 & 14.4445 & 14.4443 & 0.1290 & 0.0264 & 120.2100 & -- & 15.6041 & 15.8180 \\
+meta-llama/Llama-3.1-8B-Instruct & ia3 & few\_shot & tier\_1 & 1200 & 0 & 99.2500 & 45.7500 & 0.9050 & 0.9050 & 0.9050 & 0.5250 & 0.5250 & 0.5250 & 0.8975 & 0.8975 & 0.8975 & -- & 218.2083 & 15.9217 & 1.1062 & 14.3927 & 14.3921 & 0.1320 & 0.0271 & 115.3048 & -- & 15.6041 & 15.8180 \\
+meta-llama/Llama-3.1-8B-Instruct & ia3 & few\_shot & tier\_2 & 1200 & 0 & 99.6667 & 94.8333 & 0.9542 & 0.9542 & 0.9542 & 0.9917 & 0.9917 & 0.9917 & 0.9950 & 0.9950 & 0.9950 & -- & 224.8317 & 15.6425 & 1.0890 & 14.3639 & 14.3636 & 0.1311 & 0.0269 & 108.9345 & -- & 15.6041 & 15.8180 \\
+meta-llama/Llama-3.1-8B-Instruct & ia3 & few\_shot & tier\_3 & 1200 & 0 & 99.7500 & 84.4167 & 0.8808 & 0.8808 & 0.8808 & 0.9900 & 0.9900 & 0.9900 & 0.9617 & 0.9617 & 0.9617 & 84.4167 & 223.4358 & 15.7258 & 1.0918 & 14.4030 & 14.4016 & 0.1323 & 0.0271 & 106.8688 & -- & 15.6041 & 15.8180 \\
+meta-llama/Llama-3.1-8B-Instruct & ia3 & few\_shot & overall & 4800 & 0 & 99.6042 & 80.2917 & 0.9263 & 0.9263 & 0.9263 & 0.8752 & 0.8752 & 0.8752 & 0.9627 & 0.9627 & 0.9627 & -- & 221.0369 & 15.7365 & 1.0927 & 14.4010 & 14.4004 & 0.5243 & 0.1075 & 112.7076 & -- & 15.6041 & 15.8180 \\
+\bottomrule
+\end{tabular}

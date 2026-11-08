@@ -1,0 +1,62 @@
+{
+  "created_at": "2026-10-14T14:48:03.408549+00:00",
+  "arguments": {
+    "seed": 42,
+    "prompt_variants": [
+      "minimal",
+      "extended",
+      "few_shot"
+    ],
+    "train_tiers": [
+      "tier_0",
+      "tier_1",
+      "tier_2",
+      "tier_3"
+    ],
+    "eval_tiers": [
+      "tier_0",
+      "tier_1",
+      "tier_2",
+      "tier_3"
+    ],
+    "max_seq_length": 512,
+    "max_new_tokens": 64,
+    "num_train_epochs": 3.0,
+    "learning_rate": null,
+    "warmup_ratio": 0.03,
+    "train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "logging_steps": 10,
+    "save_total_limit": 2,
+    "dataloader_num_workers": 4,
+    "progress_every": 10,
+    "trust_remote_code": false,
+    "no_gradient_checkpointing": false,
+    "report_to": "none",
+    "log_level": "INFO",
+    "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+    "adapter_type": "ia3",
+    "prompt_variant": "minimal",
+    "train_dataset_path": "/lustre/home/rkarlovi/noisy-json-parsing/train_dataset_v3.csv",
+    "validation_dataset_path": "/lustre/home/rkarlovi/noisy-json-parsing/val_dataset_v3.csv",
+    "test_dataset_path": "/lustre/home/rkarlovi/noisy-json-parsing/test_dataset_v3.csv",
+    "output_dir": "/lustre/home/rkarlovi/noisy-json-parsing/adapters/meta-llama_Llama-3.1-8B-Instruct__ia3__minimal",
+    "results_dir": "/lustre/home/rkarlovi/noisy-json-parsing/results/peft/meta-llama_Llama-3.1-8B-Instruct__ia3__minimal",
+    "resume_from_checkpoint": "auto"
+  },
+  "train_tiers": [
+    "tier_0",
+    "tier_1",
+    "tier_2",
+    "tier_3"
+  ],
+  "eval_tiers": [
+    "tier_0",
+    "tier_1",
+    "tier_2",
+    "tier_3"
+  ]
+}

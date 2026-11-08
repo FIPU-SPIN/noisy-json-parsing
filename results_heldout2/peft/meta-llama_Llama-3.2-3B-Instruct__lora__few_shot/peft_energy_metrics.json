@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-08T02:32:29.945726+00:00",
+  "by_tier": {
+    "tier_0": {
+      "energy_kwh": 0.09578535694726542,
+      "emissions_kg": 0.019632358330625415,
+      "average_gpu_power_w": 71.81855330887659,
+      "tracker_error": null,
+      "inference_wall_seconds": 1261.8061172962189
+    },
+    "tier_1": {
+      "energy_kwh": 0.0981353453321259,
+      "emissions_kg": 0.020114016649963186,
+      "average_gpu_power_w": 71.45114001455657,
+      "tracker_error": null,
+      "inference_wall_seconds": 1295.0949397087097
+    },
+    "tier_2": {
+      "energy_kwh": 0.09990835634930778,
+      "emissions_kg": 0.020477416534066827,
+      "average_gpu_power_w": 71.29797049262476,
+      "tracker_error": null,
+      "inference_wall_seconds": 1318.82213139534
+    },
+    "tier_3": {
+      "energy_kwh": 0.10318817494374734,
+      "emissions_kg": 0.021149654712820345,
+      "average_gpu_power_w": 70.8332590128992,
+      "tracker_error": null,
+      "inference_wall_seconds": 1365.491967201233
+    }
+  },
+  "overall": {
+    "energy_kwh": 0.39701723357244645,
+    "emissions_kg": 0.08137344622747578,
+    "average_gpu_power_w": 71.34007596925454
+  }
+}
